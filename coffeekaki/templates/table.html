@@ -1,0 +1,65 @@
+{% extends 'main.html'%} {% block content %} {% load static %}
+
+<div class="customer_order">
+  <div class="container pt-0">
+    <div class="row">
+      <div class="col-lg-12">
+        <br />
+        <div class="box-element">
+          <div
+            style="border-bottom: 1px solid #ececec"
+            class="text-center pb-2"
+          >
+            <strong>Current Order</strong>
+          </div>
+          <div class="cart-row pt-2">
+            <div class="text-center" style="flex: 2"></div>
+            <div class="text-start" style="flex: 2"><strong>Order</strong></div>
+            <div class="text-start" style="flex: 2"><strong>Item</strong></div>
+            <div class="text-center" style="flex: 2">
+              <strong>Price</strong>
+            </div>
+            <div class="text-center" style="flex: 1">
+              <strong>Quantity</strong>
+            </div>
+            <div class="text-center" style="flex: 2">
+              <strong>Total</strong>
+            </div>
+          </div>
+          {% for itemOrder in itemsOrder %}
+          <div class="cart-row">
+            <div class="text-start" style="flex: 2">
+              <img
+                class="row-image pe-2"
+                src="{{itemOrder.product.image.url}}"
+                alt="product photo"
+              />
+            </div>
+            <div class="text-start" style="flex: 2">
+              <p>
+                {{itemOrder.order.customer.username}},
+                ({{itemOrder.order.date_ordered}}) <br />
+                {{itemOrder.order.transaction_id}}
+              </p>
+            </div>
+            <div class="text-start" style="flex: 2">
+              <p>{{itemOrder.product.name}}</p>
+            </div>
+            <div class="text-center" style="flex: 2">
+              <p>RM{{itemOrder.product.price|floatformat:2}}</p>
+            </div>
+            <div class="text-center" style="flex: 1">
+              <p>{{itemOrder.quantity}}</p>
+            </div>
+            <div class="text-center" style="flex: 2">
+              <p>RM{{itemOrder.get_total}}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

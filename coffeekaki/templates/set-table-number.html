@@ -1,0 +1,20 @@
+{% extends 'main.html'%} {% block content %} {% load static %}
+
+<script>
+  var myTable = JSON.parse(getCookie("myTable"));
+  if (myTable == undefined) {
+    myTable = "{{table_number}}";
+    console.log("Table was created");
+    document.cookie = "myTable=" + JSON.stringify(myTable) + ";domain=;path=/";
+  } else {
+    myTable = "";
+    myTable = "{{table_number}}";
+    console.log("Table was created");
+    document.cookie = "myTable=" + JSON.stringify(myTable) + ";domain=;path=/";
+  }
+  console.log("myTable: ", myTable);
+
+  window.location.href = "{% url 'home' %}";
+</script>
+
+{% endblock content %}

@@ -1,0 +1,16 @@
+<div>
+  <div class="prouductslisting">
+    {% for product in products %}
+    <div>
+      <h5>
+        {{product.id}} --
+        <img src="{{product.image.url}}" alt="product photo" />
+        <a href="{% url 'products' product.name %}">{{product.name}}</a>
+        -- {{product.description}} -- {{product.price}} - {{product.image}} --
+        {{product.category}} -- {{product.type}}
+      </h5>
+    </div>
+    {% endfor %}
+  </div>
+  <div></div>
+</div>

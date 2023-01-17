@@ -1,0 +1,53 @@
+{% load static %}
+<div id="mynavbarmainid" class="mynavbarmain">
+  <div class="mynavbarsub">
+    <!-- navbar -->
+    <div class="header">
+      <div class="logo">
+        <a href="{% url 'home' %}"
+          ><img
+            src="{% static 'coffeekaki/coffeekaki.jpg' %}"
+            alt="coffeekaki logo"
+        /></a>
+      </div>
+      <div class="search">
+        <form method="GET" action="{% url 'search' %}">
+          <input type="text" placeholder="Search Here" name="q" />
+        </form>
+      </div>
+      <div class="icons">
+        <a href="{% url 'table' table_number %}" class="fa fa-edit">
+          <span
+            class="position-relative top-0 start-0 translate-middle badge rounded-pill bg-secondary"
+            >{{table_number}}</span
+          >
+        </a>
+        <a href="{% url 'login' %}" class="fa fa-user">
+          <span
+            class="position-relative top-0 start-0 translate-middle badge rounded-pill bg-danger"
+            >{{user.username|first|upper}}</span
+          >
+        </a>
+        <a href="{% url 'cart' %}" class="fa fa-shopping-cart">
+          <span
+            class="position-relative top-0 start-0 translate-middle badge rounded-pill bg-info"
+            >{{order.get_cart_items}}</span
+          >
+        </a>
+        <a href="#" class="fa fa-bars"></a>
+      </div>
+    </div>
+    <div class="links">
+      <a href="{% url 'products' 'All' %}">All products</a>
+      {% for category in categories %}
+      <div>
+        <h5>
+          <a href="{% url 'products' category.category %}"
+            >{{category.category}}</a
+          >
+        </h5>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

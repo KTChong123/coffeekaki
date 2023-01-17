@@ -1,0 +1,35 @@
+{% extends 'main.html'%} {% block content %} {% load static %}
+
+<div class="product_category">{{ product_category }}</div>
+
+<!-- Product listing -->
+<div class="prouductslisting">
+  {% for product in products %}
+  <div class="prouductitems">
+    <div class="card mx-auto col-md-3 col-10 mt-2 mb-3">
+      <img
+        class="mx-auto img-thumbnail"
+        src="{{product.image.url}}"
+        alt="product photo"
+      />
+      <div class="card-body text-center mx-auto">
+        <div class="cvp">
+          <h5 class="card-title font-weight-bold">{{product.name}}</h5>
+          <p class="card-text">{{product.description}}</p>
+          <p class="card-text">RM{{product.price}}</p>
+          <button
+            href="{% url 'products' product.name %}"
+            data-product="{{product.id}}"
+            data-action="add"
+            class="btn cart px-auto update-cart"
+          >
+            ADD TO CART
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}

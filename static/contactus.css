@@ -1,0 +1,20 @@
+.footer{
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.contacttext{
+    padding-right: 50px;
+}
+
+.contacticons .fa {
+    color: #542100;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 0px 10px;
+    transition: 0.6s;
+  }

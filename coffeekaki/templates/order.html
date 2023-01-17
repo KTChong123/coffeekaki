@@ -1,0 +1,148 @@
+{% extends 'ordermain.html'%} {% block content %} {% load static %}
+
+<div class="d-flex justify-content-center pt-4">
+  <h2 class="m-0">Order queue: {{ product_category }}</h2>
+  <button
+    data-orderitem="0"
+    data-action="toggle_order_history"
+    class="btn btn-secondary update-order-item ms-3"
+  >
+    Toggle History
+  </button>
+</div>
+{% if show_order_history.state %}
+<div class="container pt-0">
+  <div class="row">
+    <div class="col-lg-12">
+      <br />
+      <div class="box-element">
+        <div style="border-bottom: 1px solid #ececec" class="text-center pb-2">
+          <strong>History</strong>
+        </div>
+        <div class="cart-row pt-2">
+          <div class="text-center" style="flex: 2"></div>
+          <div class="text-start" style="flex: 2"><strong>Order</strong></div>
+          <div class="text-start" style="flex: 2"><strong>Item</strong></div>
+          <div class="text-center" style="flex: 2">
+            <strong>Price</strong>
+          </div>
+          <div class="text-center" style="flex: 1">
+            <strong>Quantity</strong>
+          </div>
+          <div class="text-center" style="flex: 2">
+            <strong>Total</strong>
+          </div>
+        </div>
+        {% for itemHistory in itemsHistory %}
+        <div class="cart-row3">
+          <div class="text-start" style="flex: 2">
+            <img
+              class="row-image pe-2"
+              src="{{itemHistory.product.image.url}}"
+              alt="product photo"
+            />
+          </div>
+          <div class="text-start" style="flex: 2">
+            <p>
+              Table:{{itemHistory.table_number}},
+              {{itemHistory.order.customer.username}} <br />
+              ({{itemHistory.order.date_ordered}}) <br />
+              {{itemHistory.order.transaction_id}}
+            </p>
+          </div>
+          <div class="text-start" style="flex: 2">
+            <p>{{itemHistory.product.name}}</p>
+          </div>
+          <div class="text-center" style="flex: 2">
+            <p>RM{{itemHistory.product.price|floatformat:2}}</p>
+          </div>
+          <div class="text-center" style="flex: 1">
+            <p>{{itemHistory.quantity}}</p>
+          </div>
+          <div class="text-center" style="flex: 2">
+            <p>RM{{itemHistory.get_total}}</p>
+          </div>
+        </div>
+        <div class="cart-row">
+          <div class="text-start" style="flex: 1">
+            <button
+              data-orderitem="{{itemHistory.id}}"
+              data-action="order_item_reactivate"
+              class="btn btn-danger update-order-item"
+            >
+              Reactivate
+            </button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="container pt-0">
+  <div class="row">
+    <div class="col-lg-12">
+      <br />
+      <div class="box-element">
+        <div class="cart-row">
+          <div class="text-center" style="flex: 2"></div>
+          <div class="text-start" style="flex: 2"><strong>Order</strong></div>
+          <div class="text-start" style="flex: 2"><strong>Item</strong></div>
+          <div class="text-center" style="flex: 2">
+            <strong>Price</strong>
+          </div>
+          <div class="text-center" style="flex: 1">
+            <strong>Quantity</strong>
+          </div>
+          <div class="text-center" style="flex: 2">
+            <strong>Total</strong>
+          </div>
+        </div>
+        {% for item in items %}
+        <div class="cart-row3">
+          <div class="text-start" style="flex: 2">
+            <img
+              class="row-image pe-2"
+              src="{{item.product.image.url}}"
+              alt="product photo"
+            />
+          </div>
+          <div class="text-start" style="flex: 2">
+            <p>
+              Table: {{item.table_number}}, {{item.order.customer.username}}
+              <br />
+              ({{item.order.date_ordered}}) <br />
+              {{item.order.transaction_id}}
+            </p>
+          </div>
+          <div class="text-start" style="flex: 2">
+            <p>{{item.product.name}}</p>
+          </div>
+          <div class="text-center" style="flex: 2">
+            <p>RM{{item.product.price|floatformat:2}}</p>
+          </div>
+          <div class="text-center" style="flex: 1">
+            <p>{{item.quantity}}</p>
+          </div>
+          <div class="text-center" style="flex: 2">
+            <p>RM{{item.get_total}}</p>
+          </div>
+        </div>
+        <div class="cart-row">
+          <div class="text-start" style="flex: 1">
+            <button
+              data-orderitem="{{item.id}}"
+              data-action="order_item_complete"
+              class="btn btn-success update-order-item"
+            >
+              Done
+            </button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %} {% endblock content %}

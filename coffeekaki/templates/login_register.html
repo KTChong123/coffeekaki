@@ -1,0 +1,211 @@
+{% extends 'main.html'%} {% block content %} {% load static %}
+{% load socialaccount %}
+
+<div>
+  {% if request.user.is_authenticated %}
+  <div class="container pt-2 d-flex justify-content-center">
+    <h1>Welcome, {{user.username|title}}</h1>
+  </div>
+  <div class="container pt-2 d-flex justify-content-center">
+    <form action="{% url 'logout' %}">
+      <input type="submit" value="Logout" />
+    </form>
+  </div>
+
+  <div class="customer_order">
+    <div class="container pt-0">
+        <div class="row">
+          <div class="col-lg-12">
+            <br />
+            <div class="box-element">
+              <div style="border-bottom: 1px solid #ececec" class="text-center pb-2">
+                <strong>Current Order</strong>
+              </div>
+              <div class="cart-row pt-2">
+                <div class="text-center" style="flex: 2"></div>
+                <div class="text-start" style="flex: 2"><strong>Order</strong></div>
+                <div class="text-start" style="flex: 2"><strong>Item</strong></div>
+                <div class="text-center" style="flex: 2">
+                  <strong>Price</strong>
+                </div>
+                <div class="text-center" style="flex: 1">
+                  <strong>Quantity</strong>
+                </div>
+                <div class="text-center" style="flex: 2">
+                  <strong>Total</strong>
+                </div>
+              </div>
+              {% for itemOrder in itemsOrder %}
+              <div class="cart-row">
+                <div class="text-start" style="flex: 2">
+                  <img
+                    class="row-image pe-2"
+                    src="{{itemOrder.product.image.url}}"
+                    alt="product photo"
+                  />
+                </div>
+                <div class="text-start" style="flex: 2">
+                  <p>
+                    Table: {{itemOrder.table_number}},
+                    ({{itemOrder.order.date_ordered}}) <br />
+                    {{itemOrder.order.transaction_id}}
+                  </p>
+                </div>
+                <div class="text-start" style="flex: 2">
+                  <p>{{itemOrder.product.name}}</p>
+                </div>
+                <div class="text-center" style="flex: 2">
+                  <p>RM{{itemOrder.product.price|floatformat:2}}</p>
+                </div>
+                <div class="text-center" style="flex: 1">
+                  <p>{{itemOrder.quantity}}</p>
+                </div>
+                <div class="text-center" style="flex: 2">
+                  <p>RM{{itemOrder.get_total}}</p>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <a class="btn btn-secondary position-relative top-50 start-50 translate-middle mt-5" onclick="show_or_hide_customer_order_history()" href="#customer_order_history">Toggle History</a>
+
+  <div class="customer_order_history" id="customer_order_history" style="display: none;">
+    <div class="container pt-0">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="box-element">
+              <div style="border-bottom: 1px solid #ececec" class="text-center pb-2">
+                <strong>Order History</strong>
+              </div>
+              <div class="cart-row pt-2">
+                <div class="text-center" style="flex: 2"></div>
+                <div class="text-start" style="flex: 2"><strong>Order</strong></div>
+                <div class="text-start" style="flex: 2"><strong>Item</strong></div>
+                <div class="text-center" style="flex: 2">
+                  <strong>Price</strong>
+                </div>
+                <div class="text-center" style="flex: 1">
+                  <strong>Quantity</strong>
+                </div>
+                <div class="text-center" style="flex: 2">
+                  <strong>Total</strong>
+                </div>
+            
+              </div>
+              {% for itemHistory in itemsHistory %}
+              <div class="cart-row">
+                <div class="text-start" style="flex: 2">
+                  <img
+                    class="row-image pe-2"
+                    src="{{itemHistory.product.image.url}}"
+                    alt="product photo"
+                  />
+                </div>
+                <div class="text-start" style="flex: 2">
+                  <p>
+                    {{itemHistory.order.customer.username}}
+                    ({{itemHistory.order.date_ordered}}) <br />
+                    {{itemHistory.order.transaction_id}}
+                  </p>
+                </div>
+                <div class="text-start" style="flex: 2">
+                  <p>{{itemHistory.product.name}}</p>
+                </div>
+                <div class="text-center" style="flex: 2">
+                  <p>RM{{itemHistory.product.price|floatformat:2}}</p>
+                </div>
+                <div class="text-center" style="flex: 1">
+                  <p>{{itemHistory.quantity}}</p>
+                </div>
+                <div class="text-center" style="flex: 2">
+                  <p>RM{{itemHistory.get_total}}</p>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+ 
+
+  {% else %}
+    {% if page == 'login' %}
+    <div class="container pt-2 d-flex justify-content-center">
+        <form method="POST" action="">
+        {% csrf_token %}
+        <h5 class="text-center pt-3 pb-3"><strong>Please sign up or sign in</strong></h5>
+
+        <p>
+            <label>Username:</label>
+            <input type="text" name="username" placeholder="Enter Username" />
+        </p>
+        <p>
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="Enter Password" />
+        </p>
+        <p>
+            <input type="submit" value="Login" />
+        </p>
+        </form>
+    </div>
+    <div class="container pt-2 d-flex justify-content-center">
+        <a href="{% provider_login_url 'google'%}?next=/"
+        class="fa fa-google btn btn-primary fs-4"
+        style="--bs-btn-padding-y: 1.0rem; --bs-btn-padding-x: 2.0rem;">
+            Login with Google
+        </a>
+    </div>
+    <div class="container pt-2 d-flex justify-content-center">
+        {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <div class="container pt-2 d-flex justify-content-center">
+        <p>Haven't Signed Up Yet? </p>
+    </div>
+    <div class="container pt-2 d-flex justify-content-center">
+        <a href="{% url 'register' %}">Sign up</a>
+    </div>
+
+    {% else %}
+
+    <div class="container pt-2 d-flex justify-content-center">
+        <form method="POST" action="">
+        {% csrf_token %}
+        <p>
+         {{form.as_p}}
+        </p>
+            <input type="submit" value="Register" />
+        </p>
+        </form> 
+    </div>
+    <div class="container pt-2 d-flex justify-content-center">
+        {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <div class="container pt-2 d-flex justify-content-center">
+        <p>Already Signed Up? </p>
+    </div>
+    <div class="container pt-2 d-flex justify-content-center">
+        <a href="{% url 'login' %}">Login</a>
+    </div>
+    {% endif %}
+  {% endif %}
+</div>
+
+{% endblock content %}

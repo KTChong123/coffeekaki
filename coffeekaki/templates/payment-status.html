@@ -1,0 +1,10 @@
+{% extends 'main.html'%} {% block content %} {% load static %}
+
+<div class="d-flex justify-content-center mt-3">
+  <h4 style="text-align: center">{{payment_status_msg}}</h4>
+</div>
+<div class="d-flex justify-content-center mt-1">
+  <a class="btn btn-success" href="{% url 'home' %}">Back to Homepage</a>
+</div>
+
+{% endblock content %}

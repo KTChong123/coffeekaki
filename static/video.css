@@ -1,0 +1,49 @@
+.video {
+  max-width: 1500px;
+  padding-top: 10px;
+  margin: auto;
+}
+
+.myIframe {
+  position: relative;
+  padding-bottom: 32%;
+  padding-top: 30px;
+  height: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch; /*<<--- THIS IS THE KEY*/ 
+  /*border: solid black 1px;*/
+  width: 60%;
+  height: 50%;
+  margin: auto;
+}
+
+.myIframe iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (max-width: 800px){
+  .myIframe {
+      position: relative;
+      padding-bottom: 52.4%;
+      padding-top: 30px;
+      height: 0;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch; /*<<--- THIS IS THE KEY*/ 
+      /*border: solid black 1px;*/
+      width: 100%;
+      height: 100%;
+      margin: auto;
+    }
+    
+    .myIframe iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+}

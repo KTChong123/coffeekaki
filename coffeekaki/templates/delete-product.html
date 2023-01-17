@@ -1,0 +1,26 @@
+{% extends 'manage-main.html'%} {% block content %} {% load static %}
+
+<div class="container d-flex justify-content-center pt-2">
+  <form
+    class="justify-content-center"
+    method="post"
+    enctype="multipart/form-data"
+    action=""
+  >
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{obj}}"?</p>
+    <div class="d-flex justify-content-start grid">
+      <a class="text-start" style="flex: 1" href="{{request.META.HTTP_REFERER}}"
+        >Go Back</a
+      >
+      <input
+        class="text-center"
+        style="flex: 1"
+        type="submit"
+        value="Confirm"
+      />
+    </div>
+  </form>
+</div>
+
+{% endblock content %}

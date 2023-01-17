@@ -1,0 +1,251 @@
+{% extends 'main.html'%} {% block content %} {% load static %}
+
+<div class="mycarousel">
+  <!-- carousel -->
+  <div
+    id="carouselExampleCaptions"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="3000">
+        <img
+          src="{% static 'coffeekaki/kolomee.jpeg' %}"
+          alt="kolomee picture"
+          class="d-block w-100"
+          class="h-50"
+        />
+        <div class="carousel-caption">
+          <a href="{% url 'products' 'Foods' %}" class="carouselbutton"
+            >Foods Menu</a
+          >
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="3000">
+        <img
+          src="{% static 'coffeekaki/kopipanas.jpg' %}"
+          alt="kopipanas picture"
+          class="d-block w-100"
+          class="h-50"
+        />
+        <div class="carousel-caption">
+          <a href="{% url 'products' 'Drinks' %}" class="carouselbutton"
+            >Drinks Menu</a
+          >
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="3000">
+        <img
+          src="{% static 'coffeekaki/kayatoast.jpeg' %}"
+          alt="kayatoast picture"
+          class="d-block w-100"
+          class="h-50"
+        />
+        <div class="carousel-caption">
+          <a href="{% url 'products' 'Snacks' %}" class="carouselbutton"
+            >Snacks Menu</a
+          >
+        </div>
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<!-- best sellers -->
+<div class="product_category mt-2">Best sellers</div>
+<div class="prouductslisting">
+  {% for product in best_sellers %}
+  <div class="prouductitems">
+    <div class="card mx-auto col-md-3 col-10 mt-2 mb-3">
+      <img
+        class="mx-auto img-thumbnail"
+        src="{{product.image.url}}"
+        alt="product photo"
+      />
+      <div class="card-body text-center mx-auto">
+        <div class="cvp">
+          <h5 class="card-title font-weight-bold">{{product.name}}</h5>
+          <p class="card-text">{{product.description}}</p>
+          <p class="card-text">RM{{product.price}}</p>
+          <button
+            href="{% url 'products' product.name %}"
+            data-product="{{product.id}}"
+            data-action="add"
+            class="btn cart px-auto update-cart"
+          >
+            ADD TO CART
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Video -->
+<div class="video">
+  <div class="myIframe">
+    <iframe
+      width="1550"
+      src="https://www.youtube.com/embed/8pXB6IDrE0o"
+      title="The Land of Gourmet - Sarawak Kolo Mee in Singapore | Documentary"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+
+<!-- Review -->
+<div class="reviewcarousel">
+  <div id="carouselReview" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#carouselReview"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselReview"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselReview"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="8000">
+        <div class="review-image">
+          <img
+            src="{% static 'coffeekaki/kolomee.jpeg' %}"
+            class="d-block w-100"
+            alt="..."
+          />
+        </div>
+        <div class="review-caption">
+          <div class="carousel-caption">
+            <h5>David</h5>
+            <p>The kolomee is very good. Noodle is springy and not mushy.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="8000">
+        <div class="review-image">
+          <img
+            src="{% static 'coffeekaki/kopipanas.jpg' %}"
+            class="d-block w-100"
+            alt="..."
+          />
+        </div>
+        <div class="review-caption">
+          <div class="carousel-caption">
+            <h5>KC Lee</h5>
+            <p>The kopi is on the bitter side but I like it.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="8000">
+        <div class="review-image">
+          <img
+            src="{% static 'coffeekaki/kayatoast.jpeg' %}"
+            class="d-block w-100"
+            alt="..."
+          />
+        </div>
+        <div class="review-caption">
+          <div class="carousel-caption">
+            <h5>Michelle Chai</h5>
+            <p>Tasty toast. My faverate for breakfast here.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselReview"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselReview"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<!-- Brand List -->
+<div class="brandlist">
+  <img src="{% static 'coffeekaki/fnn-food-logo.png' %}" alt="" />
+  <img src="{% static 'coffeekaki/Coca-Cola_logo.svg.png' %}" alt="" />
+  <img src="{% static 'coffeekaki/150x150-white-1.png' %}" alt="" />
+  <img src="{% static 'coffeekaki/costa-coffee-logo__1_.webp' %}" alt="" />
+</div>
+
+<!-- Contact -->
+<div class="footer">
+  <div class="contacttext">Contact us</div>
+  <div class="contacticons">
+    <a href="#" class="fa fa-facebook"></a>
+    <a href="#" class="fa fa-instagram"></a>
+    <a href="#" class="fa fa-youtube"></a>
+    <a href="#" class="fa fa-whatsapp"></a>
+  </div>
+</div>
+
+{% endblock content %}

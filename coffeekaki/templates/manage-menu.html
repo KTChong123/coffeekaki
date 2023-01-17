@@ -1,0 +1,43 @@
+{% extends 'manage-main.html'%} {% block content %} {% load static %}
+
+<div class="container d-flex flex-row-reverse pt-2">
+  <a href="{% url 'add_product' %}" class="carouselbutton rounded-pill"
+    >Add product +</a
+  >
+</div>
+
+<!-- Product listing -->
+<div class="prouductslisting">
+  {% for product in products %}
+  <div class="prouductitems">
+    <div class="card mx-auto col-md-3 col-10 mt-2 mb-3">
+      <img
+        class="mx-auto img-thumbnail"
+        src="{{product.image.url}}"
+        alt="product photo"
+      />
+      <div class="card-body text-center mx-auto">
+        <div class="cvp">
+          <h5 class="card-title font-weight-bold">{{product.name}}</h5>
+          <p class="card-text">{{product.description}}</p>
+          <p class="card-text">RM{{product.price}}</p>
+          <a
+            href="{% url 'update_product' product.id %}"
+            class="btn cart px-auto"
+            >Edit</a
+          >
+          <div>
+            <a
+              href="{% url 'delete_product' product.id %}"
+              class="btn cart px-auto"
+              >Delete</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}

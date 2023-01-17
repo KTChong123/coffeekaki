@@ -1,0 +1,15 @@
+{% extends 'manage-main.html'%} {% block content %} {% load static %}
+
+<div class="container pt-2 d-flex justify-content-center">
+  <a href="{% url 'order' 'All' %}" class="carouselbutton rounded-pill"
+    >View Order</a
+  >
+</div>
+
+<div class="container pt-2 d-flex justify-content-center">
+  <a href="{% url 'manage_menu' %}" class="carouselbutton rounded-pill"
+    >Manage menu</a
+  >
+</div>
+
+{% endblock content %}
