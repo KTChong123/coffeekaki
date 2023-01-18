@@ -64,6 +64,15 @@
         document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
       }
       console.log("Cart: ", cart);
+
+      var myTable = JSON.parse(getCookie("myTable"));
+      if (myTable == undefined) {
+        myTable = "0";
+        console.log("Table was created");
+        document.cookie =
+          "myTable=" + JSON.stringify(myTable) + ";domain=;path=/";
+      }
+      console.log("myTable: ", myTable);
     </script>
 
     <!-- CSS only -->

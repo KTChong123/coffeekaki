@@ -18,7 +18,9 @@ from django.http.response import JsonResponse  # new
 from django.views.decorators.csrf import csrf_exempt  # new
 import stripe
 
+
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 # Create your views here.
 
@@ -228,7 +230,10 @@ def registerUser_view(request):
 
 
 def home_view(request):
-    table_number = request.COOKIES['myTable']
+    if "myTable" in request.COOKIES.keys():
+        table_number = request.COOKIES['myTable']
+    else:
+        table_number = "0"
     print("table_number: " + table_number)
 
     best_sellers = Product.objects.all().order_by('-number_of_sales')[:10]
