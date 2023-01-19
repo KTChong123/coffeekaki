@@ -79,8 +79,12 @@ def payment_status_view(request, pk):
         customer = request.user
         order, created = Order.objects.get_or_create(
             customer=customer, complete=False)
-
     else:
+        data = [
+            {'name': None},
+            {'email': None},
+            {'total': pk},
+        ]
         customer, order = guestOrder(request, data)
 
     order.transaction_id = transaction_id
