@@ -1,0 +1,102 @@
+.mynavbarmain{
+    background-color: #ffe8cf;
+    margin: auto;
+    height: auto;
+}
+
+.mynavbarsub{
+    max-width: 1500px;
+    margin: auto;
+}
+.header {
+  background-color: #ffe8cf;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0px 25px;
+  height: 80px;
+  align-items: center;
+}
+.logo img {
+  height: 50px;
+  width: auto;
+}
+.search input {
+  height: 35px;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+.icons {
+  text-align: right;
+}
+.icons .fa {
+  color: #542100;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 0px 10px;
+  transition: 0.6s;
+}
+.badge{
+  font-size: 10px;
+  padding: 4px 5px;
+}
+
+.fa:hover {
+  color: orangered;
+}
+.links a {
+  color: #542100;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  max-width: 1500px;
+  padding: 15px;
+  font-size: 18px;
+  transition: 0.6s;
+}
+.links {
+  background-color: #ffe8c9;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  transition: 0.6s;
+}
+.links a:hover {
+  color: orangered;
+}
+.showmylinks {
+  visibility: visible;
+  opacity: 1;
+  height: auto;
+
+}
+.showmylinksa{
+  display: block;
+}
+@media only screen and (max-width: 600px) {
+  .header {
+    grid-template-columns: auto;
+    padding: 10px 7px;
+    height: auto;
+  }
+  .logo img {
+    width: auto;
+    height: 40px;
+  }
+  .search {
+    grid-column: 2;
+    grid-row: 2;
+    grid-column: 1 / span 2;
+    padding-top: 10px;
+  }
+  .icons .fa {
+    padding: 5px;
+  }
+  .showmylinks {
+    height: auto;
+  }
+}
