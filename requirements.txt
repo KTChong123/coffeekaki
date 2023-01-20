@@ -10,6 +10,7 @@ defusedxml==0.7.1
 distlib==0.3.6
 Django==4.1.4
 django-allauth==0.52.0
+django-cors-headers==3.13.0
 filelock==3.8.2
 Flask==2.2.2
 Flask-Session==0.4.0

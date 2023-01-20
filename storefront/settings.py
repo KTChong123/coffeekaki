@@ -26,8 +26,14 @@ SECRET_KEY = 'django-insecure-$m+l1)%skrwoi6v$4&6_zoo-95nolug&sn29xx_2vk-gdudh6s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-CSRF_TRUSTED_ORIGINS = ['http://web-production-820e.up.railway.app/login/',
-                        'https://web-production-820e.up.railway.app/login/']
+CSRF_TRUSTED_ORIGINS = [
+    'http://*',
+    'https://*',
+    'http://web-production-820e.up.railway.app/',
+    'https://web-production-820e.up.railway.app/',
+    'http://web-production-820e.up.railway.app/login/',
+    'https://web-production-820e.up.railway.app/login/'
+]
 
 ALLOWED_HOSTS = ['*']
 
@@ -47,6 +53,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'corsheaders',
 ]
 
 SITE_ID = 1
@@ -61,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'storefront.urls'
