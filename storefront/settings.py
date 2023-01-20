@@ -29,10 +29,10 @@ DEBUG = True
 CSRF_TRUSTED_ORIGINS = [
     'http://*',
     'https://*',
-    'http://web-production-820e.up.railway.app/',
-    'https://web-production-820e.up.railway.app/',
-    'http://web-production-820e.up.railway.app/login/',
-    'https://web-production-820e.up.railway.app/login/'
+    'http://web-production-820e.up.railway.app',
+    'https://web-production-820e.up.railway.app',
+    'http://web-production-820e.up.railway.app/login',
+    'https://web-production-820e.up.railway.app/login',
 ]
 
 ALLOWED_HOSTS = ['*']
