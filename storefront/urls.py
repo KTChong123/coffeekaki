@@ -64,4 +64,6 @@ urlpatterns = [
          views.table_view, name="table"),
     path('set-table-number/<str:pk>/',
          views.set_table_number_view, name="set_table_number"),
+
+    path('api/', include('coffeekaki.api.urls'))
 ]

@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'corsheaders',
+    'rest_framework',
 ]
 
 SITE_ID = 1
@@ -173,3 +174,6 @@ SOCIALACCOUNT_PROVIDERS = {
 
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51MPJyGKgVq5fGvtgqHeVgLCwQA9Gc7JZ0AxkNqXW4upgeJJsh5rtc1IDl8rcxoOzmyg5TJKvVPXBrnBTRip3TAkc00O4fLA8C1'
 STRIPE_SECRET_KEY = 'sk_test_51MPJyGKgVq5fGvtgZWIBfwqUFCsatex7U2klPCJNFEqKkppKPK3f3XmDOAhyM49kRcbigLGrzbF4xoOn4gj2fa7800r6cQ1hho'
+
+
+CORS_ALLOW_ALL_ORIGINS = True
