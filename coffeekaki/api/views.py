@@ -12,10 +12,13 @@ def getRoutes(request):
         'GET /api',
         'GET /api/products',
         'GET /api/product/:id',
+        'GET /api/order-items',
+        'GET /api/order-item/:id',
+        'POST /api/create-order-item',
+        'POST /api/update-order-item/:id',
+        'DELETE /api/deleteß-order-item/:id',
         'GET /api/orders',
-        'GET /api/order/:id',
         'POST /api/create-order',
-        'POST /api/update-order/:id',
     ]
     return Response(routes)
 
@@ -92,3 +95,11 @@ def createOrder(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['DELETE'])
+def deleteOrder(request, pk):
+    order = Order.objects.get(id=pk)
+    order.delete()
+
+    return Response('Order deleted')
