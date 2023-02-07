@@ -329,6 +329,7 @@ def updateItem_view(request):
     print('Product:', productId)
 
     customer = request.user
+    print(customer)
     product = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(
         customer=customer, complete=False)
