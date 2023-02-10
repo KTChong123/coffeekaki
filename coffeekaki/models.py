@@ -96,6 +96,9 @@ class OrderItem(models.Model):
     complete = models.BooleanField(default=False)
     table_number = models.CharField(max_length=200, null=True, blank=True)
 
+    class Meta:
+        ordering = ['-date_added']
+
     def __str__(self):
         title = str(self.id) + " " + str(self.order) + " " + str(self.product) + \
             " (Complete: " + str(self.complete) + ")"
