@@ -13,6 +13,7 @@ def getRoutes(request):
         'GET /api/products-categories',
         'GET /api/products',
         'GET /api/product/:id',
+        'GET /api/products-by-category/:category',
         'GET /api/order-items',
         'GET /api/order-item/:id',
         'POST /api/create-order-item',
@@ -42,6 +43,19 @@ def getProducts(request):
 def getProduct(request, pk):
     product = Product.objects.get(id=pk)
     serializer = ProductSerializer(product, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getProductsByCategory(request, pk):
+    if pk == "":
+        products = Product.objects.all()
+    elif pk == "All":
+        products = Product.objects.all()
+    else:
+        products = Product.objects.filter(category=pk)
+    print(products)
+    serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
 
 
