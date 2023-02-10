@@ -2,6 +2,12 @@ from rest_framework.serializers import ModelSerializer
 from coffeekaki.models import *
 
 
+class ProductCategoriesSerializer(ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['category']
+
+
 class ProductSerializer(ModelSerializer):
     class Meta:
         model = Product

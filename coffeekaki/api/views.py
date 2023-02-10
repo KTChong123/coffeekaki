@@ -10,6 +10,7 @@ import json
 def getRoutes(request):
     routes = [
         'GET /api',
+        'GET /api/products-categories',
         'GET /api/products',
         'GET /api/product/:id',
         'GET /api/order-items',
@@ -21,6 +22,13 @@ def getRoutes(request):
         'POST /api/create-order',
     ]
     return Response(routes)
+
+
+@api_view(['GET'])
+def getProductsCategories(request):
+    categories = Product.objects.order_by().values('category').distinct()
+    serializer = ProductCategoriesSerializer(categories, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
